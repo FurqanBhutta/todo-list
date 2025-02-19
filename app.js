@@ -2,15 +2,13 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 
-const dbURI = "mongodb+srv://bhuttafurqan9:1nOd8QPi5qT5Chjg@cluster0.ix4t4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 main().catch(err => console.log(err));
 async function main() {
-  await mongoose.connect(dbURI);
+  await mongoose.connect("mongodb+srv://bhuttafurqan9:1nOd8QPi5qT5Chjg@cluster0.ix4t4.mongodb.net/todo-listDB");
 }
 
 const itemSchema = new mongoose.Schema({
