@@ -1,6 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { mongoose, Schema } from 'mongoose';
+require('dotenv').config();
+
+const dbURI = process.env.MONGO_URI;
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
@@ -8,7 +11,7 @@ app.use(express.static("public"));
 
 main().catch(err => console.log(err));
 async function main() {
-  await mongoose.connect('mongodb://localhost:27017/todolist');
+  await mongoose.connect(dbURI);
 }
 
 const itemSchema = new mongoose.Schema({
